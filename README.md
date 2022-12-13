@@ -1,4 +1,3 @@
-# WhatsApp Bot
 
 Simple overview of use/purpose.
 
