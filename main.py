@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import json
+import call_requests
 
 app = Flask('app')
 
@@ -22,5 +23,14 @@ def new_order():
 @app.route('/CallRequests')
 def call_requests():
   return render_template('call_requests.html')
+
+@app.route('/RequestCall', methods=["POST", "GET"])
+def request_call():
+  data = json.loads(request.data)
+  print(data)
+  # name = data["name"]
+  # phone = data["phone"]
+  # call_requests.add_request(name, phone)
+  return {"message":"Received!"}
 
 app.run(host='0.0.0.0', port=81)
