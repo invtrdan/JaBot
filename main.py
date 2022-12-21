@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import json
 import call_requests
+import order_details
+
+invoice_number = 0
 
 app = Flask('app')
 
@@ -16,12 +19,18 @@ def orders():
 def orders_in_progress():
   return render_template('orders_in_progress.html')
 
-@app.route('/NewOrder')
+@app.route('/NewOrder', methods = ['POST','GET'])
 def new_order():
+  if request.method == 'POST':
+    name = request.form['name']
+    number = request.form['number']
+    order_number = request.form['order_number']
+    order = request.form['order']
+    order_details.new_order(name, number, order_number, order)
   return render_template('new_order.html')
 
 @app.route('/CallRequests')
-def call_requests():
+def requests():
   return render_template('call_requests.html')
 
 @app.route('/RequestCall', methods=["POST", "GET"])
