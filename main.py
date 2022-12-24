@@ -42,4 +42,13 @@ def request_call():
   # call_requests.add_request(name, phone)
   return {"message":"Received!"}
 
+@app.route('/TrackOrder', methods=['GET'])
+def track_order(name, order_number):
+  order_details.track_order(name, order_number)
+  return jsonify
+
+@app.route('/JaBot')
+def bot():
+  return render_template('JaBot.html')
+
 app.run(host='0.0.0.0', port=81)

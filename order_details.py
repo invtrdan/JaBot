@@ -10,5 +10,6 @@ from replit import db
 
 def new_order(name, number, order_number, order, status="not started"):
   db[order_number] = name, number, order_number, order, status
-  
+
+
 
